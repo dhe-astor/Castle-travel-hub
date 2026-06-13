@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Castle Travel Hub</title>
 
+    <script src="/jss/script.js"> </script>
     <link rel="stylesheet" href="/css/style.css">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -16,15 +21,24 @@
         <div class="logo">Castle Travel Hub</div>
 
         <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Destinations</a></li>
-            <li><a href="#">Packages</a></li>
-            <li><a href="#">Vehicles</a></li>
-            <li><a href="#">Gallery</a></li>
-            <li><a href="#">Contact</a></li>
+           
+            <li><a class="active"href="index.html">Home</a></li>
+            <li><a href="destinations.html">Destinations</a></li>
+            <li><a href="packages.html">Packages</a></li>
+            <li><a href="vehicles.html">Vehicles</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          
         </ul>
+<!-- ◢◤ HAMBURGER MENU ◥◣ --> 
+
+        <div class="hamburger">
+          ☰
+        </div>
 
         <a href="#" class="btn">Request a Quote</a>
+         
     </nav>
 </header>
 
@@ -32,7 +46,10 @@
 
 <section class="hero">
     <div class="hero-content">
-        <h1>Discover the Beauty of Kerala</h1>
+        <h1 
+            Discover
+            <span id ="typing"></span>
+        </h1>
         <p>
             Explore breathtaking destinations, comfortable travel,
             and unforgettable experiences with Castle Travel Hub.
@@ -228,5 +245,104 @@
     </form>
 
 </section>
+<!-- ◢◤ REVIEWS SECTION ◥◣ --> 
+
+<section class="reviews">
+
+    <div class="section-header">
+        <h2>What Our Travelers Say</h2>
+        <p>Experiences shared by our happy customers.</p>
+    </div>
+
+    <div class="reviews-grid">
+
+        <div class="review-card">
+            <p>"Excellent service and comfortable travel throughout Kerala."</p>
+            <h4>- Rahul, Mumbai</h4>
+        </div>
+
+        <div class="review-card">
+            <p>"The itinerary was perfectly planned. Highly recommended."</p>
+            <h4>- Sarah, UK</h4>
+        </div>
+
+        <div class="review-card">
+            <p>"Friendly drivers and great hotels. Amazing experience."</p>
+            <h4>- Ahmed, UAE</h4>
+        </div>
+
+    </div>
+
+</section>
+<!-- ◢◤ STATS SECTION ◥◣ --> 
+<section class="stats">
+
+    <div class="stat">
+        <h2>500+</h2>
+        <p>Trips Completed</p>
+    </div>
+
+    <div class="stat">
+        <h2>1000+</h2>
+        <p>Happy Travelers</p>
+    </div>
+
+    <div class="stat">
+        <h2>50+</h2>
+        <p>Destinations</p>
+    </div>
+
+    <div class="stat">
+        <h2>24/7</h2>
+        <p>Customer Support</p>
+    </div>
+
+</section>
+<!-- ◢◤ FOOTER SECTION ◥◣ -->
+
+<footer>
+
+    <div class="footer-content">
+
+        <div>
+            <h3>Castle Travel Hub</h3>
+            <p>Your trusted travel partner in Kerala.</p>
+        </div>
+
+        <div>
+            <h3>Quick Links</h3>
+            <p>Home</p>
+            <p>Destinations</p>
+            <p>Packages</p>
+            <p>Contact</p>
+        </div>
+
+        <div>
+            <h3>Contact</h3>
+            <p>+91 XXXXX XXXXX</p>
+            <p>info@castletravelhub.com</p>
+        </div>
+
+    </div>
+
+    <div class="copyright">
+        © 2026 Castle Travel Hub. All Rights Reserved.
+    </div>
+
+</footer>
+<!-- ◢◤ WHASTSAPP SECTION ◥◣ --> 
+<a href="https://wa.me/919999999999"
+   class="whatsapp-btn"
+   target="_blank">
+    WhatsApp
+</a>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+AOS.init({
+    duration:1000,
+    once:true
+});
+</script>
 </body>
 </html>

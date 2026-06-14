@@ -101,14 +101,14 @@ function setupGallery() {
     }
 
     const galleryImages = [
-        { image: "/Images/gallery/kerala1.jpg", title: "Munnar Hills" },
-        { image: "/Images/gallery/kerala2.jpg", title: "Alleppey Backwaters" },
-        { image: "/Images/gallery/kerala3.jpg", title: "Wayanad Trails" },
-        { image: "/Images/gallery/kerala4.jpg", title: "Athirappilly Falls" },
-        { image: "/Images/gallery/kerala5.jpg", title: "Varkala Coast" },
-        { image: "/Images/gallery/kerala6.jpg", title: "Thekkady Forests" },
+        { image: "/Images/gallery/kerala1.jpg", title: "Alleppey Backwaters" },
+        { image: "/Images/gallery/kerala2.jpg", title: "Ashtamudi lake" },
+        { image: "/Images/gallery/kerala3.jpg", title: "Alleppey" },
+        { image: "/Images/gallery/kerala4.jpg", title: "Top Station View" },
+        { image: "/Images/gallery/kerala5.jpg", title: "Kumbalangi" },
+        { image: "/Images/gallery/kerala6.jpg", title: "Kadamakkudy island" },
         { image: "/Images/gallery/kerala7.jpg", title: "Kerala Village Life" },
-        { image: "/Images/gallery/kerala8.jpg", title: "Houseboat Evenings" },
+        { image: "/Images/gallery/kerala8.jpg", title: "Silver cascade" },
         { image: "/Images/gallery/kerala9.jpg", title: "Tea Garden Roads" },
         { image: "/Images/gallery/kerala10.jpg", title: "Coastal Kerala" },
         { image: "/Images/gallery/kerala11.jpg", title: "Green Escapes" },
@@ -125,22 +125,9 @@ function setupGallery() {
     let autoSlide;
     let isAnimating = false;
 
-    galleryImages.forEach((item, index) => {
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = "gallery-thumb";
-        button.setAttribute("aria-label", `Show ${item.title}`);
-        button.innerHTML = `<img src="${item.image}" alt="">`;
-        button.addEventListener("click", () => {
-            const direction = index > currentIndex ? "next" : "prev";
-            showImage(index, direction);
-            restartAutoSlide();
-        });
-        thumbsContainer.appendChild(button);
-    });
-// Render current image set
+    // Render current image set
     
-    const thumbButtons = [...thumbsContainer.querySelectorAll(".gallery-thumb")];
+    const thumbButtons = [];
 
     const renderImageSet = (index) => {
         currentIndex = (index + galleryImages.length) % galleryImages.length;
@@ -156,7 +143,6 @@ function setupGallery() {
         mainImage.src = currentItem.image;
         mainImage.alt = currentItem.title;
         galleryTitle.textContent = currentItem.title;
-        galleryCounter.textContent = `${currentIndex + 1} / ${galleryImages.length}`;
 
         nextImageElement.src = nextItem.image;
         nextImageElement.alt = nextItem.title;
@@ -165,13 +151,9 @@ function setupGallery() {
         incomingImage.src = incomingItem.image;
         incomingImage.alt = "";
         incomingTitle.textContent = incomingItem.title;
-
-        thumbButtons.forEach((button, thumbIndex) => {
-            button.classList.toggle("active", thumbIndex === currentIndex);
-    // Set incoming image for animation
-        });
     };
 
+    // Set incoming image for animation
     const setIncomingImage = (targetIndex, direction) => {
         const incomingIndex = direction === "prev"
             ? targetIndex - 1
@@ -179,7 +161,6 @@ function setupGallery() {
         const incomingItem = galleryImages[(incomingIndex + galleryImages.length) % galleryImages.length];
 
         incomingImage.src = incomingItem.image;
-    // Show image with optional animation
         incomingImage.alt = "";
         incomingTitle.textContent = incomingItem.title;
     };
@@ -188,26 +169,9 @@ function setupGallery() {
         if (isAnimating) return;
 
         const targetIndex = (index + galleryImages.length) % galleryImages.length;
-        const motionClass = direction === "prev" ? "slide-prev" : "slide-next";
 
-        if (!animate || !galleryStage) {
-            renderImageSet(targetIndex);
-            return;
-        }
-
-        isAnimating = true;
+        renderImageSet(targetIndex);
         setIncomingImage(targetIndex, direction);
-        galleryStage.classList.add("is-changing", motionClass);
-
-        window.setTimeout(() => {
-            renderImageSet(targetIndex);
-            galleryStage.classList.remove(motionClass);
-
-            window.setTimeout(() => {
-                galleryStage.classList.remove("is-changing");
-                isAnimating = false;
-            }, 80);
-        }, 520);
     };
 
     const nextImage = () => showImage(currentIndex + 1, "next");
@@ -220,22 +184,20 @@ function setupGallery() {
     const stopAutoSlide = () => {
         window.clearInterval(autoSlide);
     };
-// Button event listeners
-    
+
     const restartAutoSlide = () => {
         stopAutoSlide();
         startAutoSlide();
     };
 
+    // Button event listeners
     nextBtn.addEventListener("click", () => {
         nextImage();
-        restartAutoSlide();
     });
-// Keyboard navigation
-    
+
+    // Keyboard navigation
     prevBtn.addEventListener("click", () => {
         previousImage();
-        restartAutoSlide();
     });
 
     document.addEventListener("keydown", (event) => {
@@ -244,19 +206,12 @@ function setupGallery() {
 
         if (event.key === "ArrowRight") {
             nextImage();
-            restartAutoSlide();
         }
 
-    // Mouse interaction handlers
         if (event.key === "ArrowLeft") {
             previousImage();
-            restartAutoSlide();
         }
     });
 
-    galleryStage?.addEventListener("mouseenter", stopAutoSlide);
-    galleryStage?.addEventListener("mouseleave", startAutoSlide);
-
     showImage(0, "next", false);
-    startAutoSlide();
 }

@@ -686,6 +686,7 @@ section{
     background:rgba(5, 23, 18, 0.68);
     font-size:13px;
     font-weight:700;
+    display:none;
 }
 
 .gallery-caption h3{
@@ -716,7 +717,7 @@ section{
 .gallery-thumbs{
     width:min(1032px, 100%);
     margin:20px auto 0;
-    display:grid;
+    display:none;
     grid-template-columns:repeat(auto-fit,minmax(72px,1fr));
     gap:10px;
 }
@@ -931,16 +932,6 @@ footer{
         width:min(82vw, 340px);
         height:auto;
         transform:translate(-50%, -50%);
-    }
-
-    .gallery-stage.slide-next .gallery-card.pos-center{
-        opacity:0;
-        transform:translate(-70%, -50%) scale(0.96);
-    }
-
-    .gallery-stage.slide-prev .gallery-card.pos-center{
-        opacity:0;
-        transform:translate(-30%, -50%) scale(0.96);
     }
 
     #prevBtn{

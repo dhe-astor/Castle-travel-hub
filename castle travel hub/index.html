@@ -3,414 +3,399 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Castle Travel Hub</title>
-
-    <script src="/jss/script.js"> </script>
-    <link rel="stylesheet" href="/css/style.css">
-    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <title>Castle Travel Hub | Kerala Travel Agency</title>
+    <meta name="description" content="Castle Travel Hub plans custom Kerala holidays, vehicles, hotels, houseboats, and local travel support.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css?v=3">
+    <script src="/jss/script.js" defer></script>
 </head>
 <body>
-
-    <!-- ◢◤ NAVBAR ◥◣ --> 
-
+    <!-- ◢◤ HEADER ◥◣ -->
     <header>
-    <nav class="navbar">
-        <div class="logo">Castle Travel Hub</div>
+        <nav class="navbar" aria-label="Main navigation">
+            <a class="logo" href="#home" aria-label="Castle Travel Hub home">
+                <span>Castle</span> Travel Hub
+            </a>
 
-        <ul class="nav-links">
-           
-            <li><a class="active"href="index.html">Home</a></li>
-            <li><a href="destinations.html">Destinations</a></li>
-            <li><a href="packages.html">Packages</a></li>
-            <li><a href="vehicles.html">Vehicles</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          
-        </ul>
-<!-- ◢◤ HAMBURGER MENU ◥◣ --> 
+            <button class="hamburger" type="button" aria-label="Open navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
 
-        <div class="hamburger">
-          ☰
-        </div>
+            <ul class="nav-links">
+                <li><a class="active" href="#home">Home</a></li>
+                <li><a href="#destinations">Destinations</a></li>
+                <li><a href="#packages">Packages</a></li>
+                <li><a href="#vehicles">Vehicles</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
 
-        <a href="#" class="btn">Request a Quote</a>
-         
-    </nav>
-</header>
+            <a href="#enquiry" class="btn nav-cta">Request a Quote</a>
+        </nav>
+    </header>
 
-<!-- ◢◤ HERO SECTION ◥◣ --> 
+    <!-- ◢◤ MAIN CONTENT ◥◣ -->
+    <main>
+        <!-- ◢◤ HERO ◥◣ -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <p class="eyebrow">Kerala tours, vehicles, stays, and local support</p>
+                <h1>Discover <span id="typing">Kerala</span></h1>
+                <p>
+                    Plan peaceful backwater cruises, misty hill station escapes, beach holidays,
+                    and custom Kerala itineraries with Castle Travel Hub.
+                </p>
 
-<section class="hero">
-    <div class="hero-content">
-        <h1 
-            Discover
-            <span id ="typing"></span>
-        </h1>
-        <p>
-            Explore breathtaking destinations, comfortable travel,
-            and unforgettable experiences with Castle Travel Hub.
-        </p>
+                <div class="hero-buttons">
+                    <a href="#destinations" class="btn">Explore Destinations</a>
+                    <a href="#enquiry" class="btn-outline">Plan My Trip</a>
+                </div>
+            </div>
+        </section>
 
-        <div class="hero-buttons">
-            <a href="#" class="btn">Explore Destinations</a>
-            <a href="#" class="btn-outline">Contact Us</a>
-        </div>
-    </div>
-</section>
-<!-- ◢◤ WHY KERALA SECTION ◥◣ --> 
-<section class="why-kerala">
+        <!-- ◢◤ WHY KERALA ◥◣ -->
+        <section class="why-kerala" id="about">
+            <div class="section-header">
+                <span class="section-kicker">God's Own Country</span>
+                <h2>Why Visit Kerala?</h2>
+                <p>Kerala gives every traveller a rare mix of nature, culture, food, and calm.</p>
+            </div>
 
-    <h2>Why Visit Kerala?</h2>
+            <div class="cards">
+                <article class="card">
+                    <span class="card-icon">01</span>
+                    <h3>Backwaters</h3>
+                    <p>Stay on a houseboat and drift through palm-lined canals in Alleppey and Kumarakom.</p>
+                </article>
 
-    <div class="cards">
+                <article class="card">
+                    <span class="card-icon">02</span>
+                    <h3>Hill Stations</h3>
+                    <p>Explore tea estates, cool viewpoints, and mountain roads across Munnar and Wayanad.</p>
+                </article>
 
-        <div class="card">
-            <h3>🌴 Backwaters</h3>
-            <p>Experience peaceful houseboat cruises through Kerala's famous backwaters.</p>
-        </div>
+                <article class="card">
+                    <span class="card-icon">03</span>
+                    <h3>Beaches</h3>
+                    <p>Relax at Kovalam, Varkala, Marari, and other coastal getaways with easy transfers.</p>
+                </article>
 
-        <div class="card">
-            <h3>⛰️ Hill Stations</h3>
-            <p>Explore the beautiful tea plantations and mountains of Munnar.</p>
-        </div>
+                <article class="card">
+                    <span class="card-icon">04</span>
+                    <h3>Wildlife</h3>
+                    <p>Visit forests, waterfalls, spice gardens, and wildlife reserves with local guidance.</p>
+                </article>
+            </div>
+        </section>
 
-        <div class="card">
-            <h3>🏖️ Beaches</h3>
-            <p>Relax at stunning beaches including Kovalam and Varkala.</p>
-        </div>
+        <!-- ◢◤ DESTINATIONS ◥◣ -->
+        <section class="destinations" id="destinations">
+            <div class="section-header">
+                <span class="section-kicker">Most Requested</span>
+                <h2>Popular Destinations</h2>
+                <p>Choose a favourite place, then send us your dates and travel style.</p>
+            </div>
 
-        <div class="card">
-            <h3>🐘 Wildlife</h3>
-            <p>Discover national parks, elephants, and Kerala's rich biodiversity.</p>
-        </div>
+            <div class="destination-grid">
+                <article class="destination-card">
+                    <img src="/Images/destinations/munnar.jpg" alt="Green tea plantations in Munnar">
+                    <div class="destination-info">
+                        <h3>Munnar</h3>
+                        <p>Tea plantations, cool weather, viewpoints, waterfalls, and scenic drives.</p>
+                        <a href="#enquiry">Ask for Munnar</a>
+                    </div>
+                </article>
 
-    </div>
+                <article class="destination-card">
+                    <img src="/Images/destinations/alleppey.jpg" alt="Alleppey backwater houseboat">
+                    <div class="destination-info">
+                        <h3>Alleppey</h3>
+                        <p>Houseboats, backwater cruises, village routes, and quiet waterfront stays.</p>
+                        <a href="#enquiry">Ask for Alleppey</a>
+                    </div>
+                </article>
 
-</section>
-<!-- ◢◤ DESTINATIONS SECTION ◥◣ --> 
-<section class="destinations">
+                <article class="destination-card">
+                    <img src="/Images/destinations/wayanad.jpg" alt="Wayanad mountain landscape">
+                    <div class="destination-info">
+                        <h3>Wayanad</h3>
+                        <p>Forests, caves, waterfalls, wildlife, plantations, and soft adventure routes.</p>
+                        <a href="#enquiry">Ask for Wayanad</a>
+                    </div>
+                </article>
 
-    <div class="section-header">
-        <h2>Popular Destinations</h2>
-        <p>Explore Kerala's most loved travel destinations.</p>
-    </div>
+                <article class="destination-card">
+                    <img src="/Images/destinations/kovalam.jpg" alt="Kovalam beach shoreline">
+                    <div class="destination-info">
+                        <h3>Kovalam</h3>
+                        <p>Beach stays, sunsets, lighthouse views, Ayurveda, and easy city access.</p>
+                        <a href="#enquiry">Ask for Kovalam</a>
+                    </div>
+                </article>
+            </div>
+        </section>
 
-    <div class="destination-grid">
+        <!-- ◢◤ PACKAGES AND SERVICES ◥◣ -->
+        <section class="services" id="packages">
+            <div class="section-header">
+                <span class="section-kicker">Travel Made Easy</span>
+                <h2>Packages And Services</h2>
+                <p>Everything needed for a smooth Kerala vacation, handled in one place.</p>
+            </div>
 
-        <div class="destination-card">
-            <img src="/Images/destinations/munnar.jpg" alt="Munnar">
-            <div class="destination-info">
-                <h3>Munnar</h3>
-                <p>Tea plantations, cool climate, and breathtaking views.</p>
+            <div class="services-grid">
+                <article class="service-card">
+                    <h3>Airport Pickup</h3>
+                    <p>Pickup and drop services from Kochi, Trivandrum, Calicut, and nearby stations.</p>
+                </article>
+
+                <article class="service-card">
+                    <h3>Hotel Booking</h3>
+                    <p>Budget, premium, resort, and family-friendly accommodation options.</p>
+                </article>
+
+                <article class="service-card">
+                    <h3>Vehicle Rental</h3>
+                    <p>Sedans, SUVs, Innovas, and Tempo Travellers with experienced local drivers.</p>
+                </article>
+
+                <article class="service-card">
+                    <h3>Custom Packages</h3>
+                    <p>Personal itineraries shaped around your dates, budget, pace, and interests.</p>
+                </article>
+
+                <article class="service-card">
+                    <h3>Honeymoon Trips</h3>
+                    <p>Romantic hill station, beach, resort, and houseboat combinations.</p>
+                </article>
+
+                <article class="service-card">
+                    <h3>Family Tours</h3>
+                    <p>Comfortable routes, relaxed timings, and child-friendly travel planning.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- ◢◤ WHY US ◥◣ -->
+        <section class="why-us">
+            <div class="section-header">
+                <span class="section-kicker">Why Choose Us</span>
+                <h2>Kerala Travel With Local Care</h2>
+                <p>We focus on clean vehicles, clear planning, trusted stays, and quick support.</p>
+            </div>
+
+            <div class="why-us-grid">
+                <article class="why-us-card">
+                    <h3>Trusted Service</h3>
+                    <p>Trip plans are prepared with practical routes, fair timing, and clear communication.</p>
+                </article>
+
+                <article class="why-us-card">
+                    <h3>Premium Vehicles</h3>
+                    <p>Comfortable, clean, and well-maintained vehicles for every group size.</p>
+                </article>
+
+                <article class="why-us-card">
+                    <h3>Local Expertise</h3>
+                    <p>Get real destination advice, seasonal suggestions, and hidden local stops.</p>
+                </article>
+
+                <article class="why-us-card">
+                    <h3>24/7 Support</h3>
+                    <p>Assistance before and during the trip, including changes and travel questions.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- ◢◤ FLEET ◥◣ -->
+        <section class="fleet" id="vehicles">
+            <div class="section-header">
+                <span class="section-kicker">Travel Comfortably</span>
+                <h2>Our Vehicle Fleet</h2>
+                <p>Choose the right vehicle for airport transfers, sightseeing, and multi-day trips.</p>
+            </div>
+
+            <div class="fleet-grid">
+                <article class="fleet-card">
+                    <img src="/Images/vehicles/sedan.jpg" alt="Sedan car">
+                    <h3>Sedan</h3>
+                    <p>Best for couples and up to 4 passengers.</p>
+                </article>
+
+                <article class="fleet-card">
+                    <img src="/Images/vehicles/suv.jpg" alt="SUV car">
+                    <h3>SUV</h3>
+                    <p>Comfortable for families and up to 7 passengers.</p>
+                </article>
+
+                <article class="fleet-card">
+                    <img src="/Images/vehicles/crysta.jpeg" alt="Innova Crysta">
+                    <h3>Innova Crysta</h3>
+                    <p>Premium family travel for long Kerala routes.</p>
+                </article>
+
+                <article class="fleet-card">
+                    <img src="/Images/vehicles/tempo.jpg" alt="Tempo Traveller vehicle">
+                    <h3>Tempo Traveller</h3>
+                    <p>Ideal for groups, corporate trips, and family tours.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- ◢◤ ENQUIRY ◥◣ -->
+        <section class="enquiry" id="enquiry">
+            <div class="section-header">
+                <span class="section-kicker">Start Here</span>
+                <h2>Plan Your Kerala Trip</h2>
+                <p>Send your travel requirements and we will prepare a suitable plan.</p>
+            </div>
+
+            <form class="enquiry-form" id="enquiryForm">
+                <div class="form-grid">
+                    <input type="text" name="name" placeholder="Full Name" required>
+                    <input type="tel" name="phone" placeholder="Phone Number" required>
+                    <input type="email" name="email" placeholder="Email Address" required>
+                    <input type="date" name="date" aria-label="Travel date">
+                    <input type="number" name="travelers" min="1" placeholder="Number of Travelers">
+                    <input type="text" name="destination" placeholder="Preferred Destination">
+                </div>
+                <textarea name="message" placeholder="Tell us about your trip requirements"></textarea>
+                <button type="submit">Request a Quote</button>
+                <p class="form-status" id="formStatus" aria-live="polite"></p>
+            </form>
+        </section>
+
+        <!-- ◢◤ REVIEWS ◥◣ -->
+        <section class="reviews">
+            <div class="section-header">
+                <span class="section-kicker">Guest Notes</span>
+                <h2>What Our Travelers Say</h2>
+                <p>Experiences shared by happy customers.</p>
+            </div>
+
+            <div class="reviews-grid">
+                <article class="review-card">
+                    <p>"Excellent service and comfortable travel throughout Kerala."</p>
+                    <h4>Rahul, Mumbai</h4>
+                </article>
+
+                <article class="review-card">
+                    <p>"The itinerary was perfectly planned. Highly recommended."</p>
+                    <h4>Sarah, UK</h4>
+                </article>
+
+                <article class="review-card">
+                    <p>"Friendly drivers and great hotels. Amazing experience."</p>
+                    <h4>Ahmed, UAE</h4>
+                </article>
+            </div>
+        </section>
+
+        <!-- ◢◤ STATS ◥◣ -->
+        <section class="stats" aria-label="Castle Travel Hub travel statistics">
+            <div class="stat">
+                <h2>500+</h2>
+                <p>Trips Completed</p>
+            </div>
+
+            <div class="stat">
+                <h2>5000+</h2>
+                <p>Happy Travelers</p>
+            </div>
+
+            <div class="stat">
+                <h2>75+</h2>
+                <p>Destinations</p>
+            </div>
+
+            <div class="stat">
+                <h2>24/7</h2>
+                <p>Customer Support</p>
+            </div>
+        </section>
+
+        <!-- ◢◤ GALLERY ◥◣ -->
+        <section class="gallery-showcase" id="gallery">
+            <div class="section-header">
+                <span class="section-kicker">Photo Gallery</span>
+                <h2>Experience Kerala Through Our Lens</h2>
+                <p>Use the arrows, thumbnails, or keyboard keys to browse the gallery.</p>
+            </div>
+
+            <div class="gallery-wrapper" aria-label="Kerala photo gallery">
+                <button id="prevBtn" class="gallery-btn" type="button" aria-label="Previous photo">&lt;</button>
+
+                <div class="gallery-stage" aria-live="polite">
+                    <article class="gallery-card pos-left">
+                        <img id="galleryPrevImage" src="/Images/gallery/kerala17.jpg" alt="Nature Trails">
+                        <span id="galleryPrevTitle">Nature Trails</span>
+                    </article>
+
+                    <article class="gallery-card pos-center">
+                        <img id="galleryMainImage" src="/Images/gallery/kerala1.jpg" alt="Munnar Hills">
+                        <div class="gallery-caption">
+                            <span id="galleryCounter">1 / 17</span>
+                            <h3 id="galleryTitle">Munnar Hills</h3>
+                        </div>
+                    </article>
+
+                    <article class="gallery-card pos-right">
+                        <img id="galleryNextImage" src="/Images/gallery/kerala2.jpg" alt="Alleppey Backwaters">
+                        <span id="galleryNextTitle">Alleppey Backwaters</span>
+                    </article>
+
+                    <article class="gallery-card pos-incoming" aria-hidden="true">
+                        <img id="galleryIncomingImage" src="/Images/gallery/kerala3.jpg" alt="">
+                        <span id="galleryIncomingTitle">Wayanad Trails</span>
+                    </article>
+                </div>
+
+                <button id="nextBtn" class="gallery-btn" type="button" aria-label="Next photo">&gt;</button>
+            </div>
+
+            <div class="gallery-thumbs" id="galleryThumbs" aria-label="Gallery thumbnails"></div>
+        </section>
+    </main>
+
+    <!-- ◢◤ FOOTER ◥◣ -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div>
+                <h3>Castle Travel Hub</h3>
+                <p>Your trusted travel partner in Kerala.</p>
+            </div>
+
+            <div>
+                <h3>Quick Links</h3>
+                <a href="#destinations">Destinations</a>
+                <a href="#packages">Packages</a>
+                <a href="#vehicles">Vehicles</a>
+                <a href="#gallery">Gallery</a>
+            </div>
+
+            <div>
+                <h3>Contact</h3>
+                <a href="tel:+919999999999">+91 99999 99999</a>
+                <a href="mailto:info@castletravelhub.com">info@castletravelhub.com</a>
             </div>
         </div>
 
-        <div class="destination-card">
-            <img src="/Images/destinations/alleppey.jpg" alt="Alleppey">
-            <div class="destination-info">
-                <h3>Alleppey</h3>
-                <p>Experience the world-famous backwaters and houseboats.</p>
-            </div>
+        <div class="copyright">
+            Copyright 2026 Castle Travel Hub. All Rights Reserved.
         </div>
-
-        <div class="destination-card">
-            <img src="/Images/destinations/wayanad.jpg" alt="Wayanad">
-            <div class="destination-info">
-                <h3>Wayanad</h3>
-                <p>Forests, waterfalls, wildlife, and mountain adventures.</p>
-            </div>
-        </div>
-
-        <div class="destination-card">
-            <img src="/Images/destinations/kovalam.jpg" alt="Kovalam">
-            <div class="destination-info">
-                <h3>Kovalam</h3>
-                <p>Golden beaches and unforgettable sunsets.</p>
-            </div>
-        </div>
-
-    </div>
-
-</section>
-<!-- ◢◤ SERVICES SECTION ◥◣ --> 
-<section class="services">
-
-    <div class="section-header">
-        <h2>Our Services</h2>
-        <p>Everything you need for a hassle-free Kerala vacation.</p>
-    </div>
-
-    <div class="services-grid">
-
-        <div class="service-card">
-            <h3>✈️ Airport Pickup</h3>
-            <p>Convenient pickup and drop-off services from major airports.</p>
-        </div>
-
-        <div class="service-card">
-            <h3>🏨 Hotel Booking</h3>
-            <p>Comfortable accommodation options for every budget.</p>
-        </div>
-
-        <div class="service-card">
-            <h3>🚗 Vehicle Rental</h3>
-            <p>Choose from sedans, SUVs, Innovas, and Tempo Travellers.</p>
-        </div>
-
-        <div class="service-card">
-            <h3>🗺️ Custom Tour Packages</h3>
-            <p>Personalized itineraries based on your interests and budget.</p>
-        </div>
-
-        <div class="service-card">
-            <h3>💑 Honeymoon Packages</h3>
-            <p>Special romantic tours across Kerala's most beautiful destinations.</p>
-        </div>
-
-        <div class="service-card">
-            <h3>👨‍👩‍👧‍👦 Family Tours</h3>
-            <p>Comfortable and enjoyable trips designed for families.</p>
-        </div>
-
-    </div>
-
-</section>
-<!-- ◢◤ WHY US SECTION ◥◣ --> 
-<section class="why-us">
-
-    <div class="section-header">
-        <h2>Why Choose Castle Travel Hub?</h2>
-        <p>Your trusted travel partner for unforgettable Kerala experiences.</p>
-    </div>
-
-    <div class="why-us-grid">
-
-        <div class="why-us-card">
-            <h3>🛡️ Trusted Service</h3>
-            <p>Professional travel planning with customer satisfaction as our priority.</p>
-        </div>
-
-        <div class="why-us-card">
-            <h3>🚗 Premium Vehicles</h3>
-            <p>Comfortable, clean, and well-maintained vehicles for every journey.</p>
-        </div>
-
-        <div class="why-us-card">
-            <h3>📍 Local Expertise</h3>
-            <p>Discover hidden gems and authentic Kerala experiences.</p>
-        </div>
-
-        <div class="why-us-card">
-            <h3>📞 24/7 Support</h3>
-            <p>Always available to assist you before and during your trip.</p>
-        </div>
-
-    </div>
-
-</section>
-<!-- ◢◤ VEHICLE FLEET SECTION ◥◣ --> 
-<section class="fleet">
-
-    <div class="section-header">
-        <h2>Our Vehicle Fleet</h2>
-        <p>Travel comfortably with our well-maintained vehicles.</p>
-    </div>
-
-    <div class="fleet-grid">
-
-        <div class="fleet-card">
-            <img src="/images/vehicles/sedan.jpg" alt="Sedan">
-            <h3>Sedan</h3>
-            <p>Up to 4 Passengers</p>
-        </div>
-
-        <div class="fleet-card">
-            <img src="/images/vehicles/suv.jpg" alt="SUV">
-            <h3>SUV</h3>
-            <p>Up to 7 Passengers</p>
-        </div>
-
-        <div class="fleet-card">
-            <img src="/images/vehicles/crysta.jpeg" alt="Innova">
-            <h3>Innova Crysta</h3>
-            <p>Premium Family Travel</p>
-        </div>
-
-        <div class="fleet-card">
-            <img src="/images/vehicles/tempo.jpg" alt="Tempo Traveller">
-            <h3>Tempo Traveller</h3>
-            <p>Ideal for Groups</p>
-        </div>
-
-    </div>
-
-</section>
-<!-- ◢◤ ENQUIRY SECTION ◥◣ --> 
-<section class="enquiry">
-
-    <div class="section-header">
-        <h2>Plan Your Kerala Trip</h2>
-        <p>Send us your travel requirements and we'll get back to you.</p>
-    </div>
-
-    <form class="enquiry-form">
-
-        <input type="text" placeholder="Full Name" required>
-
-        <input type="tel" placeholder="Phone Number" required>
-
-        <input type="email" placeholder="Email Address" required>
-
-        <input type="date">
-
-        <input type="number" placeholder="Number of Travelers">
-
-        <input type="text" placeholder="Preferred Destination">
-
-        <textarea placeholder="Tell us about your trip requirements"></textarea>
-
-        <button type="submit">Request a Quote</button>
-
-    </form>
-
-</section>
-<!-- ◢◤ REVIEWS SECTION ◥◣ --> 
-
-<section class="reviews">
-
-    <div class="section-header">
-        <h2>What Our Travelers Say</h2>
-        <p>Experiences shared by our happy customers.</p>
-    </div>
-
-    <div class="reviews-grid">
-
-        <div class="review-card">
-            <p>"Excellent service and comfortable travel throughout Kerala."</p>
-            <h4>- Rahul, Mumbai</h4>
-        </div>
-
-        <div class="review-card">
-            <p>"The itinerary was perfectly planned. Highly recommended."</p>
-            <h4>- Sarah, UK</h4>
-        </div>
-
-        <div class="review-card">
-            <p>"Friendly drivers and great hotels. Amazing experience."</p>
-            <h4>- Ahmed, UAE</h4>
-        </div>
-
-    </div>
-
-</section>
-<!-- ◢◤ STATS SECTION ◥◣ --> 
-<section class="stats">
-
-    <div class="stat">
-        <h2>500+</h2>
-        <p>Trips Completed</p>
-    </div>
-
-    <div class="stat">
-        <h2>5000+</h2>
-        <p>Happy Travelers</p>
-    </div>
-
-    <div class="stat">
-        <h2>75+</h2>
-        <p>Destinations</p>
-    </div>
-
-    <div class="stat">
-        <h2>24/7</h2>
-        <p>Customer Support</p>
-    </div>
-
-</section>
-<!-- ◢◤ GALLERY SECTION ◥◣ --> 
-<section class="gallery-showcase">
-
-    <div class="section-header">
-        <h2>Experience Kerala Through Our Lens</h2>
-        <p>Moments captured from Kerala's most beautiful destinations.</p>
-    </div>
-
-    <div class="gallery-wrapper">
-
-        <button id="prevBtn" class="gallery-btn">❮</button>
-
-        <div class="gallery-track">
-
-            <div class="gallery-card">
-                <img id="img1" src="/images/gallery/kerala1.jpg">
-            </div>
-
-            <div class="gallery-card center">
-                <img id="img2" src="/images/gallery/kerala2.jpg">
-                
-            </div>
-
-            <div class="gallery-card">
-                <img id="img3" src="/images/gallery/kerala3.jpg">
-                
-            </div>
-
-        </div>
-
-        <button id="nextBtn" class="gallery-btn">❯</button>
-
-    </div>
-
-</section>
-<!-- ◢◤ FOOTER SECTION ◥◣ -->
-
-<footer>
-
-    <div class="footer-content">
-
-        <div>
-            <h3>Castle Travel Hub</h3>
-            <p>Your trusted travel partner in Kerala.</p>
-        </div>
-
-        <div>
-            <h3>Quick Links</h3>
-            <p>Home</p>
-            <p>Destinations</p>
-            <p>Packages</p>
-            <p>Contact</p>
-        </div>
-
-        <div>
-            <h3>Contact</h3>
-            <p>+91 XXXXX XXXXX</p>
-            <p>info@castletravelhub.com</p>
-        </div>
-
-    </div>
-
-    <div class="copyright">
-        © 2026 Castle Travel Hub. All Rights Reserved.
-    </div>
-
-</footer>
-<!-- ◢◤ WHASTSAPP SECTION ◥◣ --> 
-<a href="https://wa.me/919999999999"
-   class="whatsapp-btn"
-   target="_blank">
-    WhatsApp
-</a>
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
-<script>
-AOS.init({
-    duration:1000,
-    once:true
-});
-</script>
+    </footer>
+
+    <!-- ◢◤ WHATSAPP BUTTON ◥◣ -->
+    <a href="https://wa.me/919999999999?text=Hi%20Castle%20Travel%20Hub%2C%20I%20want%20to%20plan%20a%20Kerala%20trip."
+       class="whatsapp-btn"
+       target="_blank"
+       rel="noopener">
+        WhatsApp
+    </a>
 </body>
 </html>

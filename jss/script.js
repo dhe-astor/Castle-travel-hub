@@ -1,124 +1,262 @@
-
-window.addEventListener("scroll", () => {
-    const navbar = document.querySelector(".navbar");
-
-    if (window.scrollY > 100) {
-        navbar.classList.add("scrolled");
-    } else {
-        navbar.classList.remove("scrolled");
-    }
-});
-
-
-
-const words = ["kerala", "Paradise", "nature", "culture", "adventure", "beauty"];
-
-let wordIndex = 0;
-
-setInterval(() => {
-    typingElement.textContent = words[wordIndex];
-    wordIndex = (wordIndex + 1) % words.length;
-}, 2000);
-
-
-// Hamburger menu functionality 
 document.addEventListener("DOMContentLoaded", () => {
-
+    const navbar = document.querySelector(".navbar");
     const hamburger = document.querySelector(".hamburger");
     const navLinks = document.querySelector(".nav-links");
+    const navAnchors = document.querySelectorAll(".nav-links a");
+    const typingElement = document.getElementById("typing");
+    const enquiryForm = document.getElementById("enquiryForm");
+    const formStatus = document.getElementById("formStatus");
 
-    hamburger.addEventListener("click", () => {
-        navLinks.classList.toggle("active");
-    });
+    const setNavbarState = () => {
+        if (!navbar) return;
+        navbar.classList.toggle("scrolled", window.scrollY > 60);
+    };
 
-});
+    setNavbarState();
+    window.addEventListener("scroll", setNavbarState);
 
-// gallery showcase functionality
-const galleryImages = [
-    {
-        image: "/images/gallery/kerala1.jpg",
-        title: "📍 Munnar"
-    },
-    {
-        image: "/images/gallery/kerala2.jpg",
-        title: "📍 Alleppey"
-    },
-    {
-        image: "/images/gallery/kerala3.jpg",
-        title: "📍 Wayanad"
-    },
-    {
-        image: "/images/gallery/kerala4.jpg",
-        title: "📍 Athirappilly"
-    },
-    {
-        image: "/images/gallery/kerala5.jpg",
-        title: "📍 Varkala"
-    },
-    {
-        image: "/images/gallery/kerala6.jpg",
-        title: "📍 Thekkady"
-    }
-];
+    // Hamburger menu functionality
+    if (hamburger && navLinks) {
+        hamburger.addEventListener("click", () => {
+            const isOpen = navLinks.classList.toggle("active");
+            hamburger.classList.toggle("active", isOpen);
+            hamburger.setAttribute("aria-expanded", String(isOpen));
+        });
 
-let currentIndex = 0;
-
-function updateGallery() {
-
-    const total = galleryImages.length;
-
-    const left = galleryImages[currentIndex % total];
-    const center = galleryImages[(currentIndex + 1) % total];
-    const right = galleryImages[(currentIndex + 2) % total];
-
-    document.getElementById("img1").src = left.image;
-    document.getElementById("img2").src = center.image;
-    document.getElementById("img3").src = right.image;
-}
-
-// Next Button
-document.getElementById("nextBtn").addEventListener("click", () => {
-    currentIndex++;
-    updateGallery();
-});
-
-// Previous Button
-document.getElementById("prevBtn").addEventListener("click", () => {
-
-    currentIndex--;
-
-    if (currentIndex < 0) {
-        currentIndex = galleryImages.length - 1;
+        navAnchors.forEach((anchor) => {
+            anchor.addEventListener("click", () => {
+                navLinks.classList.remove("active");
+                hamburger.classList.remove("active");
+                hamburger.setAttribute("aria-expanded", "false");
+            });
+        });
     }
 
-    updateGallery();
+    // Typing animation
+    if (typingElement) {
+        const words = ["Kerala", "Backwaters", "Munnar", "Wayanad", "Beaches", "Culture"];
+        let wordIndex = 0;
+
+        setInterval(() => {
+            wordIndex = (wordIndex + 1) % words.length;
+            typingElement.textContent = words[wordIndex];
+        }, 1800);
+    }
+// Active section navigation observer
+    
+    const sections = [...document.querySelectorAll("main section[id], footer[id]")];
+
+    if (sections.length && navAnchors.length) {
+        const activeObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+
+                navAnchors.forEach((anchor) => {
+                    anchor.classList.toggle("active", anchor.getAttribute("href") === `#${entry.target.id}`);
+                });
+            });
+        }, {
+            rootMargin: "-45% 0px -50% 0px",
+            threshold: 0
+        });
+
+        sections.forEach((section) => activeObserver.observe(section));
+    }
+// Enquiry form handler
+    
+    if (enquiryForm && formStatus) {
+        enquiryForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const formData = new FormData(enquiryForm);
+            const name = String(formData.get("name") || "traveller").trim();
+            const destination = String(formData.get("destination") || "Kerala").trim();
+
+            formStatus.textContent = `Thanks ${name}. Your ${destination} trip request is ready. Please contact us on WhatsApp to confirm the details.`;
+            enquiryForm.reset();
+        });
+    }
+
+    setupGallery();
+// Gallery functionality
 });
 
-// Initial Load
-updateGallery();
+function setupGallery() {
+    const mainImage = document.getElementById("galleryMainImage");
+    const prevImage = document.getElementById("galleryPrevImage");
+    const nextImageElement = document.getElementById("galleryNextImage");
+    const incomingImage = document.getElementById("galleryIncomingImage");
+    const galleryTitle = document.getElementById("galleryTitle");
+    const prevTitle = document.getElementById("galleryPrevTitle");
+    const nextTitle = document.getElementById("galleryNextTitle");
+    const incomingTitle = document.getElementById("galleryIncomingTitle");
+    const galleryCounter = document.getElementById("galleryCounter");
+    const thumbsContainer = document.getElementById("galleryThumbs");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const galleryStage = document.querySelector(".gallery-stage");
 
-// Auto Slide Every 4 Seconds
-let autoSlide = setInterval(() => {
-    currentIndex++;
-    updateGallery();
-}, 4000);
+    if (!mainImage || !prevImage || !nextImageElement || !incomingImage || !galleryTitle || !prevTitle || !nextTitle || !incomingTitle || !galleryCounter || !thumbsContainer || !prevBtn || !nextBtn) {
+        return;
+    }
 
-// Pause Auto Slide On Hover
-const gallery = document.querySelector(".gallery-showcase");
+    const galleryImages = [
+        { image: "/Images/gallery/kerala1.jpg", title: "Munnar Hills" },
+        { image: "/Images/gallery/kerala2.jpg", title: "Alleppey Backwaters" },
+        { image: "/Images/gallery/kerala3.jpg", title: "Wayanad Trails" },
+        { image: "/Images/gallery/kerala4.jpg", title: "Athirappilly Falls" },
+        { image: "/Images/gallery/kerala5.jpg", title: "Varkala Coast" },
+        { image: "/Images/gallery/kerala6.jpg", title: "Thekkady Forests" },
+        { image: "/Images/gallery/kerala7.jpg", title: "Kerala Village Life" },
+        { image: "/Images/gallery/kerala8.jpg", title: "Houseboat Evenings" },
+        { image: "/Images/gallery/kerala9.jpg", title: "Tea Garden Roads" },
+        { image: "/Images/gallery/kerala10.jpg", title: "Coastal Kerala" },
+        { image: "/Images/gallery/kerala11.jpg", title: "Green Escapes" },
+        { image: "/Images/gallery/kerala12.jpg", title: "Waterfront Views" },
+        { image: "/Images/gallery/kerala13.jpg", title: "Kerala Culture" },
+        { image: "/Images/gallery/kerala14.jpg", title: "Mountain Mist" },
+        { image: "/Images/gallery/kerala15.jpg", title: "Scenic Drives" },
+        { image: "/Images/gallery/kerala16.jpg", title: "Holiday Moments" },
+        { image: "/Images/gallery/kerala17.jpg", title: "Nature Trails" }
+    ];
 
-if (gallery) {
+    let currentIndex = 0;
+    // Create gallery thumbnails
+    let autoSlide;
+    let isAnimating = false;
 
-    gallery.addEventListener("mouseenter", () => {
-        clearInterval(autoSlide);
+    galleryImages.forEach((item, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "gallery-thumb";
+        button.setAttribute("aria-label", `Show ${item.title}`);
+        button.innerHTML = `<img src="${item.image}" alt="">`;
+        button.addEventListener("click", () => {
+            const direction = index > currentIndex ? "next" : "prev";
+            showImage(index, direction);
+            restartAutoSlide();
+        });
+        thumbsContainer.appendChild(button);
+    });
+// Render current image set
+    
+    const thumbButtons = [...thumbsContainer.querySelectorAll(".gallery-thumb")];
+
+    const renderImageSet = (index) => {
+        currentIndex = (index + galleryImages.length) % galleryImages.length;
+        const previousItem = galleryImages[(currentIndex - 1 + galleryImages.length) % galleryImages.length];
+        const currentItem = galleryImages[currentIndex];
+        const nextItem = galleryImages[(currentIndex + 1) % galleryImages.length];
+        const incomingItem = galleryImages[(currentIndex + 2) % galleryImages.length];
+
+        prevImage.src = previousItem.image;
+        prevImage.alt = previousItem.title;
+        prevTitle.textContent = previousItem.title;
+
+        mainImage.src = currentItem.image;
+        mainImage.alt = currentItem.title;
+        galleryTitle.textContent = currentItem.title;
+        galleryCounter.textContent = `${currentIndex + 1} / ${galleryImages.length}`;
+
+        nextImageElement.src = nextItem.image;
+        nextImageElement.alt = nextItem.title;
+        nextTitle.textContent = nextItem.title;
+
+        incomingImage.src = incomingItem.image;
+        incomingImage.alt = "";
+        incomingTitle.textContent = incomingItem.title;
+
+        thumbButtons.forEach((button, thumbIndex) => {
+            button.classList.toggle("active", thumbIndex === currentIndex);
+    // Set incoming image for animation
+        });
+    };
+
+    const setIncomingImage = (targetIndex, direction) => {
+        const incomingIndex = direction === "prev"
+            ? targetIndex - 1
+            : targetIndex + 1;
+        const incomingItem = galleryImages[(incomingIndex + galleryImages.length) % galleryImages.length];
+
+        incomingImage.src = incomingItem.image;
+    // Show image with optional animation
+        incomingImage.alt = "";
+        incomingTitle.textContent = incomingItem.title;
+    };
+
+    const showImage = (index, direction = "next", animate = true) => {
+        if (isAnimating) return;
+
+        const targetIndex = (index + galleryImages.length) % galleryImages.length;
+        const motionClass = direction === "prev" ? "slide-prev" : "slide-next";
+
+        if (!animate || !galleryStage) {
+            renderImageSet(targetIndex);
+            return;
+        }
+
+        isAnimating = true;
+        setIncomingImage(targetIndex, direction);
+        galleryStage.classList.add("is-changing", motionClass);
+
+        window.setTimeout(() => {
+            renderImageSet(targetIndex);
+            galleryStage.classList.remove(motionClass);
+
+            window.setTimeout(() => {
+                galleryStage.classList.remove("is-changing");
+                isAnimating = false;
+            }, 80);
+        }, 520);
+    };
+
+    const nextImage = () => showImage(currentIndex + 1, "next");
+    const previousImage = () => showImage(currentIndex - 1, "prev");
+
+    const startAutoSlide = () => {
+        autoSlide = window.setInterval(nextImage, 4500);
+    };
+
+    const stopAutoSlide = () => {
+        window.clearInterval(autoSlide);
+    };
+// Button event listeners
+    
+    const restartAutoSlide = () => {
+        stopAutoSlide();
+        startAutoSlide();
+    };
+
+    nextBtn.addEventListener("click", () => {
+        nextImage();
+        restartAutoSlide();
+    });
+// Keyboard navigation
+    
+    prevBtn.addEventListener("click", () => {
+        previousImage();
+        restartAutoSlide();
     });
 
-    gallery.addEventListener("mouseleave", () => {
+    document.addEventListener("keydown", (event) => {
+        const galleryIsVisible = document.querySelector("#gallery:hover, #gallery:focus-within");
+        if (!galleryIsVisible) return;
 
-        autoSlide = setInterval(() => {
-            currentIndex++;
-            updateGallery();
-        }, 4000);
+        if (event.key === "ArrowRight") {
+            nextImage();
+            restartAutoSlide();
+        }
 
+    // Mouse interaction handlers
+        if (event.key === "ArrowLeft") {
+            previousImage();
+            restartAutoSlide();
+        }
     });
 
+    galleryStage?.addEventListener("mouseenter", stopAutoSlide);
+    galleryStage?.addEventListener("mouseleave", startAutoSlide);
+
+    showImage(0, "next", false);
+    startAutoSlide();
 }

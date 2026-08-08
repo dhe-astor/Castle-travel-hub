@@ -49,8 +49,8 @@
             
             <div class="contact-detail-card">
                 <h3>📞 Call / WhatsApp</h3>
-                <p><strong>Support Hotline:</strong> +91 99999 99999</p>
-                <p><strong>Alternate Number:</strong> +91 88888 88888</p>
+                <p><strong>Name:</strong> ASWIN</p>
+                <p><strong>Support Hotline:</strong> +9539415251</p>
                 <p style="font-size: 0.85rem; color: var(--gray-600);">Available 24 hours a day, 7 days a week.</p>
             </div>
 
@@ -62,17 +62,15 @@
 
             <div class="contact-detail-card">
                 <h3>📍 Office Address</h3>
-                <p>Castle Travel Hub, 1st Floor, Skyline Plaza,</p>
-                <p>MG Road, Ernakulam, Cochin - 682011</p>
-                <p>Kerala, India</p>
+                <p>puthenpurakal (h) irumalapady</p>
             </div>
 
             <!-- Stylized Map Container -->
             <div class="map-container">
                 <div class="map-placeholder-text">
                     <span style="font-size: 32px; display: block; margin-bottom: 10px;">🗺️</span>
-                    <strong>Castle Travel Hub Office Map</strong>
-                    <p style="font-size: 0.85rem; margin-top: 5px; color: var(--gray-600);">Ernakulam, Cochin, Kerala, India</p>
+                    <strong>Office Map</strong>
+                    <p style="font-size: 0.85rem; margin-top: 5px; color: var(--gray-600);">puthenpurakal (h) irumalapady</p>
                 </div>
             </div>
 
@@ -81,34 +79,38 @@
         <!-- Right Column: Enquiry Form -->
         <div class="enquiry-container" style="margin: 0;" data-aos="fade-left">
             <h2 style="font-family: var(--font-heading); margin-bottom: 25px; color: var(--primary);">Request a Custom Quote</h2>
-            <form class="enquiry-form">
+            <form class="enquiry-form" action="https://api.web3forms.com/submit" method="POST">
+
+                <input type="hidden" name="access_key" value="b865e85a-6c77-40e9-a1ec-2bb36d47dce1">
+
+                <input type="hidden" name="subject" value="New Contact Enquiry - Castle Travel Hub">
                 <div>
                     <label>Full Name</label>
-                    <input type="text" placeholder="Enter Full Name" required>
+                    <input type="text" name="name" placeholder="Enter Full Name" required>
                 </div>
                 <div>
                     <label>Phone Number</label>
-                    <input type="tel" placeholder="Enter Contact Number" required>
+                    <input type="tel" name="phone" placeholder="Enter Contact Number" required>
                 </div>
                 <div>
                     <label>Email Address</label>
-                    <input type="email" placeholder="Enter Email Address" required>
+                    <input type="email" name="email" placeholder="Enter Email Address" required>
                 </div>
                 <div>
                     <label>Travel Date</label>
-                    <input type="date">
+                    <input type="date" name="travel_date">
                 </div>
                 <div>
                     <label>Number of Travelers</label>
-                    <input type="number" min="1" placeholder="e.g. 4">
+                    <input type="number" name="travelers" min="1" placeholder="e.g. 4">
                 </div>
                 <div>
                     <label>Preferred Destination</label>
-                    <input type="text" placeholder="e.g. Munnar, Alleppey">
+                    <input type="text" name="destination" placeholder="e.g. Munnar, Alleppey">
                 </div>
                 <div class="form-group-full">
                     <label>Tell us about your trip requirements</label>
-                    <textarea placeholder="Describe your plan: duration, special requests, preferred hotel category, and vehicle choices..."></textarea>
+                    <textarea name="message" placeholder="Describe your plan: duration, special requests, preferred hotel category, and vehicle choices..."></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit Enquiry</button>
             </form>
@@ -135,8 +137,9 @@
 
             <div>
                 <h3>Contact Info</h3>
-                <p>📍 Cochin, Kerala, India</p>
-                <p>📞 +91 99999 99999</p>
+                <p>👤 ASWIN</p>
+                <p>📍 puthenpurakal (h) irumalapady</p>
+                <p>📞 +9539415251</p>
                 <p>✉️ info@castletravelhub.com</p>
             </div>
         </div>
@@ -147,7 +150,7 @@
     </footer>
 
     <!-- ◢◤ WHATSAPP SECTION ◥◣ --> 
-    <a href="https://wa.me/919999999999" class="whatsapp-btn" target="_blank">
+    <a href="https://wa.me/919539415251" class="whatsapp-btn" target="_blank">
         <span style="font-size:20px;">💬</span> Chat on WhatsApp
     </a>
 

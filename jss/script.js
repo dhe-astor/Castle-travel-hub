@@ -253,4 +253,104 @@ document.addEventListener("DOMContentLoaded", () => {
             if (e.key === "Escape") closeLightbox();
         });
     }
+
+    // 8. DATE PICKER CONSTRAINTS, POPUP & CUSTOM FORMATTING
+    const dateInputs = document.querySelectorAll('input[type="date"]');
+    const localDate = new Date();
+    const year = localDate.getFullYear();
+    const month = String(localDate.getMonth() + 1).padStart(2, '0');
+    const day = String(localDate.getDate()).padStart(2, '0');
+    const today = `${year}-${month}-${day}`;
+
+    // Format current date as "MMM D" (e.g. "AUG 8")
+    const monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+    const currentMonth = monthNames[localDate.getMonth()];
+    const currentDay = localDate.getDate();
+    const todayPlaceholder = `${currentMonth} ${currentDay}`;
+
+    dateInputs.forEach(input => {
+        // Initially set input type to text to show custom placeholder
+        input.type = "text";
+        input.placeholder = todayPlaceholder;
+        
+        let rawValue = ""; // Stores the raw YYYY-MM-DD value
+
+        const enableDatePicker = () => {
+            const wasText = input.type !== "date";
+            if (wasText) {
+                input.type = "date";
+                input.min = today;
+            }
+            if (rawValue) {
+                input.value = rawValue;
+            }
+            
+            const trigger = () => {
+                try {
+                    if (typeof input.showPicker === "function") {
+                        input.showPicker();
+                    }
+                } catch (err) {
+                    console.warn("showPicker is not supported or was blocked by browser security.", err);
+                }
+            };
+
+            if (wasText) {
+                setTimeout(trigger, 10);
+            } else {
+                trigger();
+            }
+        };
+
+        // Format chosen date value as dd/mm/yyyy
+        input.addEventListener("change", () => {
+            if (input.type === "date") {
+                if (input.value) {
+                    rawValue = input.value; // Store the selected YYYY-MM-DD
+                    const parts = rawValue.split("-");
+                    if (parts.length === 3) {
+                        const formattedDate = `${parts[2]}/${parts[1]}/${parts[0]}`;
+                        // Temporarily change type to text to display custom format
+                        input.type = "text";
+                        input.value = formattedDate;
+                    }
+                } else {
+                    rawValue = "";
+                    input.type = "text";
+                    input.value = "";
+                    input.placeholder = todayPlaceholder;
+                }
+            }
+        });
+
+        // When clicked or focused, show native date picker
+        input.addEventListener("click", () => {
+            if (input.type !== "date") {
+                enableDatePicker();
+            }
+        });
+        input.addEventListener("focus", () => {
+            if (input.type !== "date") {
+                enableDatePicker();
+            }
+        });
+
+        // When focus is lost, handle display state reversion
+        input.addEventListener("blur", () => {
+            setTimeout(() => {
+                if (!rawValue) {
+                    input.type = "text";
+                    input.value = "";
+                    input.placeholder = todayPlaceholder;
+                } else if (input.type === "date") {
+                    // Revert to text display of the formatted date
+                    const parts = rawValue.split("-");
+                    if (parts.length === 3) {
+                        input.type = "text";
+                        input.value = `${parts[2]}/${parts[1]}/${parts[0]}`;
+                    }
+                }
+            }, 100);
+        });
+    });
 });

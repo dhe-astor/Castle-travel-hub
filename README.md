@@ -20,24 +20,6 @@ Open the site locally: [castle travel hub/index.html](castle travel hub/index.ht
 - Lightweight JavaScript for interactions (`jss/script.js`)
 - Ready-to-use images in `Images/` and `assets/`
 
-## Quick Start
-
-1. Open the project folder in your file explorer.
-2. Open `castle travel hub/index.html` in your browser.
-
-Or serve locally with Python (recommended for local routing):
-
-```bash
-python -m http.server 8000
-# then visit http://localhost:8000/castle%20travel%20hub/index.html
-```
-
-## Structure
-
-- `castle travel hub/` — site pages (index, about, gallery, etc.)
-- `css/` — stylesheets
-- `Images/` — image assets
-- `jss/` — JavaScript
 
 ## Contributing
 
@@ -47,5 +29,3 @@ Suggestions, improvements, and PRs are welcome. Open an issue or submit a pull r
 
 This project is licensed under the terms in the [LICENSE](LICENSE) file.
 
----
-If you'd like, I can add a nicer hero screenshot, badges, or GitHub Pages setup — tell me which you'd prefer.

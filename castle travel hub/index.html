@@ -7,7 +7,11 @@
     <meta name="description" content="Explore breathtaking destinations, comfortable travel, and custom Kerala tour packages with Castle Travel Hub. Your local travel experts in Kerala.">
     
     <!-- External Scripts and Stylesheets -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="/jss/supabase-config.js"></script>
+    <script src="/jss/supabase-client.js"></script>
     <script src="/jss/script.js" defer></script>
+    <script src="/jss/public-sync.js" defer></script>
     <link rel="stylesheet" href="/css/style.css">
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -413,15 +417,15 @@
 
             <div>
                 <h3>Contact Info</h3>
-                <p>👤 ASWIN</p>
-                <p>📍 puthenpurakal (h) irumalapady</p>
-                <p>📞 +9539415251</p>
-                <p>✉️ info@castletravelhub.com</p>
+                <p data-bind="contact_person">👤 ASWIN</p>
+                <p data-bind="address">📍 puthenpurakal (h) irumalapady</p>
+                <p data-bind="phone">📞 +9539415251</p>
+                <p data-bind="email">✉️ info@castletravelhub.com</p>
             </div>
         </div>
 
         <div class="copyright">
-            © 2026 Castle Travel Hub. All Rights Reserved. Crafted with ❤️ for God's Own Country.
+            © 2026 Castle Travel Hub. All Rights Reserved. Crafted with ❤️ for God's Own Country. | <a href="/admin/login.html" style="color: inherit; opacity: 0.7; text-decoration: none;">Admin Portal</a>
         </div>
     </footer>
 

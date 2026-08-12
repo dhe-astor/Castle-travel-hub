@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | Castle Travel Hub</title>
+    <link rel="stylesheet" href="/css/admin.css">
+    <!-- Supabase JS Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="/jss/supabase-config.js"></script>
+    <script src="/jss/supabase-client.js"></script>
+    <script src="/jss/admin-auth.js"></script>
+</head>
+<body class="login-body">
+
+    <div class="login-card">
+        <div class="login-header">
+            <div class="login-brand">Castle <span>Travel Hub</span></div>
+            <span class="login-badge">🔒 Secure Admin Portal</span>
+        </div>
+
+        <div id="login-error" class="login-error-alert"></div>
+
+        <form id="admin-login-form">
+            <div class="form-group">
+                <label for="admin-email">Admin Email or Username</label>
+                <input type="email" id="admin-email" class="form-control" placeholder="admin@castletravelhub.com" required autocomplete="username">
+            </div>
+
+            <div class="form-group">
+                <label for="admin-password">Password</label>
+                <input type="password" id="admin-password" class="form-control" placeholder="••••••••••••" required autocomplete="current-password">
+            </div>
+
+            <button type="submit" id="login-submit-btn" class="login-btn">
+                <span>Sign In to Dashboard</span> ➔
+            </button>
+        </form>
+
+        <div class="login-footer-link">
+            <a href="/castle travel hub/index.html">← Return to Public Website</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            // Check if already logged in
+            if (window.CastleAuth) {
+                const user = await window.CastleAuth.getCurrentUser();
+                if (user) {
+                    window.location.href = '/admin/index.html';
+                    return;
+                }
+            }
+
+            const loginForm = document.getElementById('admin-login-form');
+            const errorAlert = document.getElementById('login-error');
+            const submitBtn = document.getElementById('login-submit-btn');
+
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                errorAlert.style.display = 'none';
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<span>Verifying credentials...</span>';
+
+                const email = document.getElementById('admin-email').value.trim();
+                const password = document.getElementById('admin-password').value;
+
+                try {
+                    await window.CastleAuth.login(email, password);
+                    window.location.href = '/admin/index.html';
+                } catch (err) {
+                    errorAlert.textContent = err.message || 'Authentication failed. Please check your credentials.';
+                    errorAlert.style.display = 'block';
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<span>Sign In to Dashboard</span> ➔';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Castle Travel Hub</title>
+    <link rel="stylesheet" href="/css/admin.css">
+    <!-- Supabase JS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="/jss/supabase-config.js"></script>
+    <script src="/jss/supabase-client.js"></script>
+    <script src="/jss/admin-auth.js"></script>
+    <script src="/jss/admin-app.js" defer></script>
+</head>
+<body>
+
+    <div class="admin-layout">
+        <!-- ─── SIDEBAR NAVIGATION ─── -->
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-brand">Castle <span>Hub</span></div>
+                <span class="sidebar-badge">ADMIN</span>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li class="sidebar-menu-item">
+                    <a class="sidebar-menu-link active" data-tab="dashboard">
+                        <span class="sidebar-menu-icon">📊</span>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="sidebar-menu-item">
+                    <a class="sidebar-menu-link" data-tab="enquiries">
+                        <span class="sidebar-menu-icon">📩</span>
+                        <span>Enquiries</span>
+                        <span class="sidebar-menu-badge" id="sidebar-unread-badge">0</span>
+                    </a>
+                </li>
+                <li class="sidebar-menu-item">
+                    <a class="sidebar-menu-link" data-tab="reviews">
+                        <span class="sidebar-menu-icon">⭐</span>
+                        <span>Reviews</span>
+                    </a>
+                </li>
+                <li class="sidebar-menu-item">
+                    <a class="sidebar-menu-link" data-tab="gallery">
+                        <span class="sidebar-menu-icon">🖼️</span>
+                        <span>Gallery</span>
+                    </a>
+                </li>
+                <li class="sidebar-menu-item">
+                    <a class="sidebar-menu-link" data-tab="destinations">
+                        <span class="sidebar-menu-icon">📍</span>
+                        <span>Destinations</span>
+                    </a>
+                </li>
+                <li class="sidebar-menu-item">
+                    <a class="sidebar-menu-link" data-tab="settings">
+                        <span class="sidebar-menu-icon">⚙️</span>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <div class="sidebar-user">
+                    <div class="user-avatar" id="user-initial">A</div>
+                    <div class="user-info-text">
+                        <div class="user-name" id="user-display-email">admin@castletravelhub.com</div>
+                        <div class="user-role">Administrator</div>
+                    </div>
+                </div>
+                <button class="logout-btn" id="admin-logout-btn">
+                    <span>🚪 Sign Out</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- ─── MAIN CONTENT ─── -->
+        <main class="admin-main">
+            <!-- Topbar -->
+            <header class="admin-topbar">
+                <div class="topbar-left">
+                    <button class="mobile-toggle" id="sidebarToggle">☰</button>
+                    <h1 class="page-title" id="pageTitleHeading">Overview Dashboard</h1>
+                </div>
+
+                <div class="topbar-actions">
+                    <a href="/castle travel hub/index.html" target="_blank" class="btn-public-site">
+                        <span>🌐 View Public Website</span> ↗
+                    </a>
+                </div>
+            </header>
+
+            <div class="content-container">
+
+                <!-- ════════════════ TAB 1: OVERVIEW DASHBOARD ════════════════ -->
+                <section id="section-dashboard" class="admin-section active">
+                    <!-- Database Health Notification Banner -->
+                    <div id="db-health-banner"></div>
+
+                    <!-- Stats Grid -->
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-box-info">
+                                <h3>Total Enquiries</h3>
+                                <div class="stat-number" id="stat-total-enquiries">0</div>
+                            </div>
+                            <div class="stat-box-icon stat-icon-amber">📩</div>
+                        </div>
+
+                        <div class="stat-box">
+                            <div class="stat-box-info">
+                                <h3>Unread Enquiries</h3>
+                                <div class="stat-number" id="stat-unread-enquiries" style="color: #dc2626;">0</div>
+                            </div>
+                            <div class="stat-box-icon stat-icon-green">🔔</div>
+                        </div>
+
+                        <div class="stat-box">
+                            <div class="stat-box-info">
+                                <h3>Total Reviews</h3>
+                                <div class="stat-number" id="stat-total-reviews">0</div>
+                            </div>
+                            <div class="stat-box-icon stat-icon-blue">⭐</div>
+                        </div>
+
+                        <div class="stat-box">
+                            <div class="stat-box-info">
+                                <h3>Gallery Photos</h3>
+                                <div class="stat-number" id="stat-total-gallery">0</div>
+                            </div>
+                            <div class="stat-box-icon stat-icon-purple">🖼️</div>
+                        </div>
+
+                        <div class="stat-box">
+                            <div class="stat-box-info">
+                                <h3>Destinations</h3>
+                                <div class="stat-number" id="stat-total-destinations">0</div>
+                            </div>
+                            <div class="stat-box-icon stat-icon-emerald">📍</div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div style="display: flex; gap: 12px; margin-bottom: 25px; flex-wrap: wrap;">
+                        <button class="btn-primary" onclick="window.AdminApp.showAddDestinationModal()">+ Add Destination</button>
+                        <button class="btn-primary" onclick="window.AdminApp.showUploadGalleryModal()">+ Upload Gallery Photo</button>
+                        <button class="btn-primary" onclick="window.AdminApp.showAddReviewModal()">+ Add Customer Review</button>
+                        <button class="btn-secondary" onclick="window.AdminApp.switchTab('enquiries')">View All Enquiries</button>
+                    </div>
+
+                    <!-- Recent Enquiries Panel -->
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h2 class="panel-title">Recent Travel Enquiries</h2>
+                            <button class="btn-secondary" onclick="window.AdminApp.switchTab('enquiries')">View All</button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Customer</th>
+                                        <th>Contact</th>
+                                        <th>Destination</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dashboard-recent-enquiries-table">
+                                    <tr><td colspan="6" style="text-align: center; color: var(--admin-text-muted);">Loading recent enquiries...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ════════════════ TAB 2: ENQUIRIES MANAGEMENT ════════════════ -->
+                <section id="section-enquiries" class="admin-section">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                                <h2 class="panel-title">Customer Enquiries</h2>
+                                <div style="display: flex; gap: 6px;">
+                                    <button class="action-btn active" data-enquiry-filter="all">All</button>
+                                    <button class="action-btn" data-enquiry-filter="unread">Unread</button>
+                                    <button class="action-btn" data-enquiry-filter="read">Read</button>
+                                    <button class="action-btn" data-enquiry-filter="contacted">Contacted</button>
+                                    <button class="action-btn" data-enquiry-filter="completed">Completed</button>
+                                </div>
+                            </div>
+
+                            <div class="panel-actions">
+                                <input type="text" id="enquiry-search-input" class="search-input" placeholder="🔍 Search by name, phone, email...">
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date / Time</th>
+                                        <th>Customer Name</th>
+                                        <th>Phone & Email</th>
+                                        <th>Destination & Pax</th>
+                                        <th>Travel Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="enquiries-table-body">
+                                    <tr><td colspan="7" style="text-align: center; color: var(--admin-text-muted);">Loading enquiries...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ════════════════ TAB 3: REVIEWS MANAGEMENT ════════════════ -->
+                <section id="section-reviews" class="admin-section">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h2 class="panel-title">Client Reviews & Testimonials</h2>
+                            <button class="btn-primary" onclick="window.AdminApp.showAddReviewModal()">+ Add New Review</button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Customer</th>
+                                        <th>Location</th>
+                                        <th>Rating</th>
+                                        <th>Review Text</th>
+                                        <th>Public Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="reviews-table-body">
+                                    <tr><td colspan="6" style="text-align: center; color: var(--admin-text-muted);">Loading reviews...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ════════════════ TAB 4: GALLERY MANAGEMENT ════════════════ -->
+                <section id="section-gallery" class="admin-section">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                                <h2 class="panel-title">Photo Gallery Showcase</h2>
+                                <div style="display: flex; gap: 6px;">
+                                    <button class="action-btn active" data-gallery-filter="all">All</button>
+                                    <button class="action-btn" data-gallery-filter="mountains">Mountains</button>
+                                    <button class="action-btn" data-gallery-filter="backwaters">Backwaters</button>
+                                    <button class="action-btn" data-gallery-filter="beach">Beaches</button>
+                                    <button class="action-btn" data-gallery-filter="nature">Nature</button>
+                                    <button class="action-btn" data-gallery-filter="culture">Culture</button>
+                                </div>
+                            </div>
+                            <button class="btn-primary" onclick="window.AdminApp.showUploadGalleryModal()">+ Upload New Photo</button>
+                        </div>
+
+                        <div class="admin-cards-grid" id="gallery-cards-container">
+                            <div style="grid-column: 1/-1; text-align: center; color: var(--admin-text-muted);">Loading gallery photos...</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ════════════════ TAB 5: DESTINATIONS MANAGEMENT ════════════════ -->
+                <section id="section-destinations" class="admin-section">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h2 class="panel-title">Kerala Destinations</h2>
+                            <button class="btn-primary" onclick="window.AdminApp.showAddDestinationModal()">+ Add New Destination</button>
+                        </div>
+
+                        <div class="admin-cards-grid" id="destinations-cards-container">
+                            <div style="grid-column: 1/-1; text-align: center; color: var(--admin-text-muted);">Loading destinations...</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ════════════════ TAB 6: WEBSITE SETTINGS ════════════════ -->
+                <section id="section-settings" class="admin-section">
+                    <div class="panel" style="max-width: 800px; margin: 0 auto;">
+                        <div class="panel-header">
+                            <h2 class="panel-title">Website Settings & Contact Information</h2>
+                        </div>
+
+                        <form id="settings-form" style="padding: 24px;">
+                            <div class="form-group">
+                                <label>Business Name</label>
+                                <input type="text" id="setting-business_name" class="form-control" required>
+                            </div>
+
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                                <div class="form-group">
+                                    <label>Support Phone Hotline</label>
+                                    <input type="text" id="setting-phone" class="form-control" placeholder="+9539415251" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>WhatsApp Number (without +)</label>
+                                    <input type="text" id="setting-whatsapp" class="form-control" placeholder="919539415251" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Primary Business Email</label>
+                                <input type="email" id="setting-email" class="form-control" placeholder="info@castletravelhub.com" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Office Physical Address</label>
+                                <textarea id="setting-address" class="form-control" rows="2" placeholder="puthenpurakal (h) irumalapady"></textarea>
+                            </div>
+
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                                <div class="form-group">
+                                    <label>Instagram Profile URL</label>
+                                    <input type="url" id="setting-instagram" class="form-control" placeholder="https://instagram.com/castletravelhub">
+                                </div>
+                                <div class="form-group">
+                                    <label>Facebook Page URL</label>
+                                    <input type="url" id="setting-facebook" class="form-control" placeholder="https://facebook.com/castletravelhub">
+                                </div>
+                            </div>
+
+                            <hr style="margin: 25px 0; border: 0; border-top: 1px solid var(--admin-border);">
+
+                            <h3 style="font-size: 1.1rem; margin-bottom: 12px; color: var(--admin-primary);">⚡ Live Supabase Database Connection</h3>
+                            <p style="font-size: 0.85rem; color: var(--admin-text-muted); margin-bottom: 16px;">
+                                Enter your Supabase Project details to connect directly to your cloud PostgreSQL database.
+                            </p>
+
+                            <div class="form-group">
+                                <label>Supabase Project URL</label>
+                                <input type="url" id="setting-supabase_url" class="form-control" placeholder="https://your-project.supabase.co">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Supabase Public Anon Key</label>
+                                <input type="text" id="setting-supabase_anon_key" class="form-control" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...">
+                            </div>
+
+                            <div style="text-align: right; margin-top: 20px;">
+                                <button type="submit" class="btn-primary" style="padding: 12px 28px; font-size: 1rem;">
+                                    💾 Save All Settings
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- ════════════════ MODALS ════════════════ -->
+
+    <!-- 1. ENQUIRY DETAIL MODAL -->
+    <div id="enquiry-modal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="modal-title" id="enquiry-modal-title">Enquiry Details</h3>
+                <button class="modal-close" onclick="window.AdminApp.closeModal('enquiry-modal')">&times;</button>
+            </div>
+            <div class="modal-body" id="enquiry-modal-body">
+                <!-- Dynamically injected -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn-danger" id="enquiry-modal-delete-btn">Delete Enquiry</button>
+                <button class="btn-secondary" onclick="window.AdminApp.closeModal('enquiry-modal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. ADD/EDIT REVIEW MODAL -->
+    <div id="review-modal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="modal-title" id="review-modal-title">Add Review</h3>
+                <button class="modal-close" onclick="window.AdminApp.closeModal('review-modal')">&times;</button>
+            </div>
+            <form id="review-modal-form">
+                <input type="hidden" id="review-id">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Customer Name</label>
+                        <input type="text" id="review-name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Location / City</label>
+                        <input type="text" id="review-location" class="form-control" placeholder="e.g. Mumbai, UK">
+                    </div>
+                    <div class="form-group">
+                        <label>Rating (1 to 5 Stars)</label>
+                        <select id="review-rating" class="form-control">
+                            <option value="5">⭐⭐⭐⭐⭐ (5 Stars)</option>
+                            <option value="4">⭐⭐⭐⭐ (4 Stars)</option>
+                            <option value="3">⭐⭐⭐ (3 Stars)</option>
+                            <option value="2">⭐⭐ (2 Stars)</option>
+                            <option value="1">⭐ (1 Star)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Review Comment</label>
+                        <textarea id="review-comment" class="form-control" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="review-approved" checked>
+                            Publicly Approved (Visible on website)
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="window.AdminApp.closeModal('review-modal')">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Review</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 3. ADD/EDIT GALLERY MODAL -->
+    <div id="gallery-modal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="modal-title" id="gallery-modal-title">Upload Gallery Photo</h3>
+                <button class="modal-close" onclick="window.AdminApp.closeModal('gallery-modal')">&times;</button>
+            </div>
+            <form id="gallery-modal-form">
+                <input type="hidden" id="gallery-id">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Photo Title</label>
+                        <input type="text" id="gallery-title" class="form-control" placeholder="e.g. Munnar Misty Hills" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="gallery-category" class="form-control">
+                            <option value="mountains">Mountains</option>
+                            <option value="backwaters">Backwaters</option>
+                            <option value="beach">Beaches</option>
+                            <option value="nature">Nature & Wildlife</option>
+                            <option value="culture">Culture</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Select Photo File</label>
+                        <input type="file" id="gallery-file-input" class="form-control" accept="image/*">
+                        <p style="font-size: 0.8rem; color: var(--admin-text-muted); margin-top: 4px;">Or enter direct image URL below:</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Image URL</label>
+                        <input type="text" id="gallery-image-url" class="form-control" placeholder="/Images/gallery/kerala1.jpg">
+                        <img id="gallery-img-preview" class="img-preview" alt="Preview">
+                    </div>
+                    <div class="form-group">
+                        <label>Description (Optional)</label>
+                        <textarea id="gallery-description" class="form-control" rows="2"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="window.AdminApp.closeModal('gallery-modal')">Cancel</button>
+                    <button type="submit" class="btn-primary" id="gallery-submit-btn">Upload & Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 4. ADD/EDIT DESTINATION MODAL -->
+    <div id="destination-modal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="modal-title" id="destination-modal-title">Add Destination</h3>
+                <button class="modal-close" onclick="window.AdminApp.closeModal('destination-modal')">&times;</button>
+            </div>
+            <form id="destination-modal-form">
+                <input type="hidden" id="destination-id">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Destination Name</label>
+                        <input type="text" id="destination-name" class="form-control" placeholder="e.g. Munnar" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Tagline / Subtitle</label>
+                        <input type="text" id="destination-tagline" class="form-control" placeholder="e.g. Hill Station Paradise">
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                        <div class="form-group">
+                            <label>Category Filter</label>
+                            <select id="destination-category" class="form-control">
+                                <option value="hill-station">Hill Station</option>
+                                <option value="backwaters">Backwaters</option>
+                                <option value="beach">Beach</option>
+                                <option value="wildlife">Forest & Wildlife</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Badge Label</label>
+                            <input type="text" id="destination-badge-label" class="form-control" placeholder="e.g. Hill Station">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Select Destination Image</label>
+                        <input type="file" id="destination-file-input" class="form-control" accept="image/*">
+                        <p style="font-size: 0.8rem; color: var(--admin-text-muted); margin-top: 4px;">Or enter direct image URL below:</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Image URL</label>
+                        <input type="text" id="destination-image-url" class="form-control" placeholder="/Images/destinations/munnar.jpg" required>
+                        <img id="destination-img-preview" class="img-preview" alt="Preview">
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                        <div class="form-group">
+                            <label>Package Price (₹)</label>
+                            <input type="number" id="destination-price" class="form-control" placeholder="e.g. 14999">
+                        </div>
+                        <div class="form-group">
+                            <label>Duration</label>
+                            <input type="text" id="destination-duration" class="form-control" placeholder="e.g. 5 Days / 4 Nights">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="destination-description" class="form-control" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="destination-active" checked>
+                            Visible on Public Website
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="window.AdminApp.closeModal('destination-modal')">Cancel</button>
+                    <button type="submit" class="btn-primary" id="destination-submit-btn">Save Destination</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 5. CONFIRMATION DIALOG MODAL -->
+    <div id="confirm-modal" class="modal-overlay">
+        <div class="modal-card" style="max-width: 420px; text-align: center; padding: 10px;">
+            <div style="font-size: 40px; margin-top: 15px;">⚠️</div>
+            <h3 style="margin: 15px 0 10px;" id="confirm-title">Are you sure?</h3>
+            <p style="color: var(--admin-text-muted); font-size: 0.95rem; margin-bottom: 25px;" id="confirm-message">This action cannot be undone.</p>
+            <div style="display: flex; justify-content: center; gap: 12px; margin-bottom: 10px;">
+                <button class="btn-secondary" onclick="window.AdminApp.closeModal('confirm-modal')">Cancel</button>
+                <button class="btn-danger" id="confirm-proceed-btn">Yes, Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Alerts -->
+    <div class="toast-container" id="toastContainer"></div>
+
+</body>
+</html>
